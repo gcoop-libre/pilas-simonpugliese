@@ -51,7 +51,7 @@ pilas.iniciar(titulo='Simon pugliese')
 
 pilas.avisar('Usa alt+q para salir.')
 pilas.fondos.Pasto()
-a = Piano()
+#a = Piano()
 
 b = piano.PianoNuevo(-200, 200)
 
