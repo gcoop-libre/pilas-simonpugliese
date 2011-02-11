@@ -9,20 +9,23 @@ class PianoNuevo:
 
     def _crear_teclas(self, dx, dy):
         ancho = 37
-        
-        tecla.Tecla('blanca', 12, dx + ancho * 0,  dy)
-        tecla.Tecla('negra', 13, dx + ancho * 1 - ancho/2,  dy)
-        tecla.Tecla('blanca', 14, dx + ancho * 1,  dy)
-        tecla.Tecla('negra', 15, dx + ancho/2 * 3,  dy)
-        tecla.Tecla('blanca', 16, dx + ancho * 2,  dy)
-        tecla.Tecla('blanca', 17, dx + ancho * 3,  dy)
-        tecla.Tecla('negra', 18, dx + ancho/2 * 7,  dy)   
-        tecla.Tecla('blanca', 19, dx + ancho * 4,  dy)
-        tecla.Tecla('negra', 20, dx + ancho/2 * 9,  dy)
-        tecla.Tecla('blanca', 21, dx + ancho * 5,  dy)
-        tecla.Tecla('negra', 22, dx + ancho/2 * 11,  dy)        
-        tecla.Tecla('blanca', 23, dx + ancho * 6,  dy)
-       
+        contador = 0
+        negras = [1, 3, 6, 8, 10]
+        for nota in xrange(12, 36):
+            if nota%12 in negras:
+                color = 'negra'
+                posicion_x = dx + (ancho * (contador) - ancho/2)
+            else:
+                color = 'blanca'
+                posicion_x = dx + (ancho * contador)
+                contador += 1
+            
+            tecla.Tecla(color, nota, posicion_x, dy)
+
+
+            
+
+
                           
     def cuando_hace_click(self, evento):
         tecla = pilas.actores.utils.obtener_actor_en(evento.x, evento.y)

@@ -53,7 +53,7 @@ pilas.avisar('Usa alt+q para salir.')
 pilas.fondos.Pasto()
 #a = Piano()
 
-b = piano.PianoNuevo(-200, 200)
+b = piano.PianoNuevo(-300, 200)
 
 
 
