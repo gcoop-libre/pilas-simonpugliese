@@ -45,9 +45,9 @@ class Piano:
 
 
 
-pilas.iniciar(titulo='Pianito')
-pilas.avisar('Use la tecla "q" para salir.')
-
+pilas.iniciar(titulo='Simon pugliese')
+pilas.avisar('Usa alt+q para salir.')
+pilas.fondos.Pasto()
 a = Piano()
 pilas.ejecutar()
 
