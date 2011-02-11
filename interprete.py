@@ -4,7 +4,8 @@ import pilas
     
 class Interprete:
     
-    def __init__(self):
+    def __init__(self, partitura):
+        self.partitura = partitura
         pilas.mundo.tasks.agregar(0.10, self.procesar_tick, ())
         self.tick = 0
         
