@@ -1,6 +1,6 @@
 import pilas
 
-BPM = 60.0
+BPM = 180.0
 
     
 class Interprete:
