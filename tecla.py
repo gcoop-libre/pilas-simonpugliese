@@ -7,6 +7,8 @@ class Tecla(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, imagen, x=x, y=y)
         self.definir_centro(("centro", "arriba"))
         self._cargar_sonido(nota, pilas)
+        if tipo_de_tecla == 'blanca':
+            self.z = 100
         
     def pulsar(self):
         self.sonido.reproducir()
