@@ -1,4 +1,6 @@
 import pilas
+import piano
+
 from pilas.actores import Animado
 
 class Tecla(Animado):
@@ -39,15 +41,22 @@ class Piano:
     def cuando_hace_click(self, evento):
         tecla = pilas.actores.utils.obtener_actor_en(evento.x, evento.y)
 
-        if tecla:
+        if tecla and hasattr(tecla, 'pulsar'):
             tecla.pulsar()
 
 
+pilas.iniciar(titulo='Simon pugliese')
 
-pilas.iniciar(titulo='Simon pugliese', ancho=800)
+
+
 pilas.avisar('Usa alt+q para salir.')
 pilas.fondos.Pasto()
 a = Piano()
+
+b = piano.PianoNuevo(-200, 200)
+
+
+
 pilas.ejecutar()
 
 
