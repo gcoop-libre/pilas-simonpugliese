@@ -15,10 +15,11 @@ class Partitura:
         '''
         archivo = open(nombre_archivo, 'r')
         lector_csv = csv.reader(archivo)
-        self.notas = [(int(figura), NOTAS[nota] + 12 * (int(octava)-1)) for
-                      figura, nota, octava in lector_csv]
+        self.notas = ((int(figura), NOTAS[nota] + 12 * (int(octava)-1)) for
+                      figura, nota, octava in lector_csv)
 
-
+    def siguiente(self):
+        return self.notas.next()
 
 if __name__ == '__main__':
     p = Partitura('partituras/la_yumba.csv')

@@ -5,7 +5,9 @@ class PianoNuevo:
     
     def __init__(self, dx, dy):
         pilas.eventos.click_de_mouse.connect(self.cuando_hace_click)
+        self.teclas = {}
         self._crear_teclas(dx, dy)
+
 
     def _crear_teclas(self, dx, dy):
         ancho = 37
@@ -20,18 +22,14 @@ class PianoNuevo:
                 posicion_x = dx + (ancho * contador)
                 contador += 1
             
-            tecla.Tecla(color, nota, posicion_x, dy)
-
-
-            
-
-
-                          
+            self.teclas[nota] = tecla.Tecla(color, nota, posicion_x, dy)
+         
     def cuando_hace_click(self, evento):
         tecla = pilas.actores.utils.obtener_actor_en(evento.x, evento.y)
 
         if tecla and hasattr(tecla, 'pulsar'):
             tecla.pulsar()
 
-        
+    def reproducir_nota(self, nota):
+        self.teclas[nota].pulsar()
 
