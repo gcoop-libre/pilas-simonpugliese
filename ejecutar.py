@@ -7,6 +7,7 @@ class Tecla(Animado):
 
     def __init__(self, grilla, nota, posicion):
         Animado.__init__(self, grilla)
+        self.nota = nota
         self.sonido = pilas.sonidos.cargar('c.wav')
         afinacion = 2 ** (nota / 12.0) #para no importar math 
         self.sonido.definir_pitch(afinacion)
