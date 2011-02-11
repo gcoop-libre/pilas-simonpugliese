@@ -4,6 +4,7 @@ class Tecla(pilas.actores.Actor):
     
     def __init__(self, tipo_de_tecla, nota, x, y):
         imagen = "data/" + tipo_de_tecla + ".png"
+        self.nota = nota
         pilas.actores.Actor.__init__(self, imagen, x=x, y=y)
         self.definir_centro(("centro", "arriba"))
         self._cargar_sonido(nota, pilas)
