@@ -13,6 +13,8 @@ class Tecla(pilas.actores.Actor):
         
     def pulsar(self):
         self.sonido.reproducir()
+        self.escala = 0.95
+        self.escala = [1], 0.5
 
     def _cargar_sonido(self, nota, pilas):
         self.sonido = pilas.sonidos.cargar('c.wav')
