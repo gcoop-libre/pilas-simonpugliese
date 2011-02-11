@@ -13,5 +13,6 @@ class PianoNuevo:
         tecla.Tecla('negra', dx + 25, dy)
         tecla.Tecla('negra', dx + 75, dy)
         
+        tecla.Tecla('negra', dx + 225 - 50, dy)        
         tecla.Tecla('negra', dx + 225, dy)
         tecla.Tecla('negra', dx + 275, dy)
