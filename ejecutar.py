@@ -5,8 +5,10 @@ class Tecla(Animado):
 
     def __init__(self, grilla, nota, posicion):
         Animado.__init__(self, grilla)
-        self.sonido = pilas.sonidos.cargar(nota + '.wav')
-        self.x = 160 - posicion * 55
+        self.sonido = pilas.sonidos.cargar('c.wav')
+        afinacion = 2 ** (nota / 12.0) #para no importar math 
+        self.sonido.definir_pitch(afinacion)
+        self.x = -300  + posicion * 23
 
     def pulsar(self):
         self.definir_cuadro(1)
@@ -29,13 +31,10 @@ class Piano:
 
     def crear_piezas(self):
         grilla = pilas.imagenes.cargar_grilla("data/tecla.png", 2, 1)
-        Tecla(grilla, 'c', 0)
-        Tecla(grilla, 'd', 1)
-        Tecla(grilla, 'e', 2)
-        Tecla(grilla, 'f', 3)
-        Tecla(grilla, 'g', 4)
-        Tecla(grilla, 'a', 5)
-        Tecla(grilla, 'b', 6)
+        grilla.escala = 0.5
+        for numero_nota in xrange(12, 37):
+            posicion = numero_nota - 12
+            Tecla(grilla, numero_nota, posicion)
 
     def cuando_hace_click(self, evento):
         tecla = pilas.actores.utils.obtener_actor_en(evento.x, evento.y)
@@ -45,7 +44,7 @@ class Piano:
 
 
 
-pilas.iniciar(titulo='Simon pugliese')
+pilas.iniciar(titulo='Simon pugliese', ancho=800)
 pilas.avisar('Usa alt+q para salir.')
 pilas.fondos.Pasto()
 a = Piano()
