@@ -79,7 +79,7 @@ Simon Pugliese es un juego de memoria visual.
         
 Es un homenaje al Maestro Osvaldo Pugliese
 realizado por integrantes de la
-Cooeprativa gcoop. El jugador 
+Cooperativa gcoop. El jugador 
 deberá seguir la secuencia de teclas del piano
 para componer las melodias del maestro Pugliese,
 al estilo del famoso juego Simon.

@@ -15,7 +15,7 @@ class Partitura:
         '''
         archivo = open(nombre_archivo, 'r')
         lector_csv = csv.reader(archivo)
-        self.notas = ((int(figura), NOTAS[nota] + 12 * (int(octava)-1)) for
+        self.notas = ((int(figura), "%s%s" % (nota, octava)) for
                       figura, nota, octava in lector_csv)
 
     def siguiente(self):
