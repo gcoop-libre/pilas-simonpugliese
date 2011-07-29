@@ -37,26 +37,26 @@ class PianoNuevo:
 
     def presiona_nota_teclado(self, evento):
         mapa_teclas = { 
-            u'z':12,
-            u's':13,
-            u'x':14,
-            u'd':15,
-            u'c':16,
-            u'v':17,
-            u'g':18,
-            u'b':19,
-            u'h':20,
-            u'n':21,
-            u'j':22,
-            u'm':23,
-            u',':24,
-            u'l':25,
-            u'.':26,
-            u'ñ':27,
-            u'-':28,
+            'z':12,
+            's':13,
+            'x':14,
+            'd':15,
+            'c':16,
+            'v':17,
+            'g':18,
+            'b':19,
+            'h':20,
+            'n':21,
+            'j':22,
+            'm':23,
+            ',':24,
+            'l':25,
+            '.':26,
+            'ñ':27,
+            '-':28,
             }
 
-        numero_tecla = mapa_teclas.get(evento.codigo, None)
+        numero_tecla = mapa_teclas.get(evento.texto, None)
 
         if numero_tecla != None:
             self.teclas[numero_tecla].pulsar()
