@@ -6,7 +6,7 @@ import partitura
 from pilas.actores import Animado
 
 
-pilas.iniciar(titulo='Simon pugliese')
+pilas.iniciar(usar_motor='qt', titulo='Simon pugliese')
 
 
 pilas.avisar('Usa alt+q para salir.')

@@ -19,5 +19,6 @@ class Tecla(pilas.actores.Actor):
     def _cargar_sonido(self, nota, pilas):
         self.sonido = pilas.sonidos.cargar('c.wav')
         afinacion = 2 ** (nota / 12.0) #para no importar math
-        self.sonido.definir_pitch(afinacion)
+        #self.sonido.definir_pitch(afinacion)
+        print "TODO: definir pitch", afinacion
 
