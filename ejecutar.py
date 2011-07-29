@@ -6,19 +6,27 @@ import osvaldo
 
 from pilas.actores import Animado
 
-
 pilas.iniciar(usar_motor='qt', titulo='Simon pugliese')
 
+class Juego(pilas.escenas.Escena):
 
-pilas.fondos.Pasto()
+    def __init__(self):
+        pilas.escenas.Escena.__init__(self)
+        pilas.fondos.Pasto()
 
-b = piano.PianoNuevo(-240, -75)
-t = osvaldo.Osvaldo()
-p = partitura.Partitura('partituras/la_yumba.csv')
+        b = piano.PianoNuevo(-240, -75)
+        t = osvaldo.Osvaldo()
+        p = partitura.Partitura('partituras/la_yumba.csv')
 
-interprete = Interprete(p, b)
+        interprete = Interprete(p, b)
+
+class Menu(pilas.escenas.Escena):
+
+    def __init__(self):
+        pilas.escenas.Escena.__init__(self)
 
 
+Juego()
 pilas.ejecutar()
 
 
