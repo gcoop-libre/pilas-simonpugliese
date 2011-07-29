@@ -12,12 +12,18 @@ class Tecla(pilas.actores.Actor):
             self.z = 100
         
     def pulsar(self):
-        self.sonido.reproducir()
+        try:
+            self.sonido.reproducir()
+        except:
+            pass
         self.escala = 0.95
         self.escala = [1], 0.5
 
-    def _cargar_sonido(self, nota, pilas):
-        self.sonido = pilas.sonidos.cargar('c.wav')
-        afinacion = 2 ** (nota / 12.0) #para no importar math
-        self.sonido.definir_pitch(afinacion)
-
+    def _cargar_sonido(self, numero_nota, pilas):
+        notas = {
+            3: 'c.wav',
+        }
+        try:
+            self.sonido = pilas.sonidos.cargar(notas[numero_nota])
+        except:
+            pass
