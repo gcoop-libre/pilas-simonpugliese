@@ -25,8 +25,8 @@ class PianoNuevo:
                     posicion_x = dx + (ancho * contador)
                     contador += 1
 
-              nombre_nota = "%s%d" % (nota, octava)
-              self.teclas[nombre_nota] = tecla.Tecla(color, nombre_nota, posicion_x, dy)
+                nombre_nota = "%s%d" % (nota, octava)
+                self.teclas[nombre_nota] = tecla.Tecla(color, nombre_nota, posicion_x, dy)
 
     def cuando_hace_click(self, evento):
         tecla = pilas.actores.utils.obtener_actor_en(evento.x, evento.y)
