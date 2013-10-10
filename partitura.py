@@ -18,9 +18,16 @@ class Partitura:
         self._notas = [(int(figura), "%s%s" % (nota, octava)) for
                       figura, nota, octava in lector_csv]
         self.notas = iter(self._notas)
+        self.largo = len(self._notas)
 
-    def cortar_partitura(self, hasta):
-        self.notas = iter(self._notas[:hasta])
+    def cortar_partitura(self, largo):
+        if (largo > len(self._notas)):
+            raise Exception()
+        self.largo = largo
+        self.notas = iter(self._notas[:largo])
+
+    def reiniciar(self):
+        self.notas = iter(self._notas[:self.largo])
 
     def siguiente(self):
         return self.notas.next()

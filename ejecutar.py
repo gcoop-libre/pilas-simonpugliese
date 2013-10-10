@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
+import time
 import pilas
 import piano
-from interprete import Interprete
 import partitura
 import osvaldo
-
-from pilas.actores import Animado
 
 pilas.iniciar(usar_motor='qt', titulo='Simon pugliese')
 
@@ -15,12 +13,30 @@ class Juego(pilas.escena.Base):
         pilas.escena.Base.__init__(self)
         pilas.fondos.Pasto()
 
-        b = piano.PianoNuevo(-240, -75)
-        t = osvaldo.Osvaldo()
-        p = partitura.Partitura('partituras/la_yumba.csv')
+        self.piano = piano.PianoNuevo(-240, -75)
+        self.partitura = partitura.Partitura('partituras/la_yumba.csv')
+        self.maestro = osvaldo.Osvaldo(self.partitura, self.piano)
+        self.notas_a_ejecutar = 1
+        self.partitura.cortar_partitura(self.notas_a_ejecutar)
+        self.maestro.interpretar()
+        osvaldo.termine_de_evaluar.conectar(self.avanzar)
 
-        interprete = Interprete(p, b)
 
+    def avanzar(self, datos_evento):
+        if datos_evento['estuvo_bien']:
+            self.maestro.decir('Bien! Sigamos...')
+            self.notas_a_ejecutar += 1
+            try:
+                self.partitura.cortar_partitura(self.notas_a_ejecutar)
+            except:
+                # TODO: reproducir la canción original?
+                self.maestro.decir('Felicitaciones!')
+                return
+        else:
+            self.maestro.decir('Ups! Probemos de nuevo.')
+            self.partitura.reiniciar()
+        time.sleep(2)
+        self.maestro.interpretar()
 
 class Menu(pilas.escena.Base):
 
@@ -37,7 +53,7 @@ class Menu(pilas.escena.Base):
         m.escala = [1], 0.25
 
     def iniciar_juego(self):
-        Juego()
+        self.juego = Juego()
 
     def acerca_de(self):
         AcercaDe()
