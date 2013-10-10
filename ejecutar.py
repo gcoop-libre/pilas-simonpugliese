@@ -9,10 +9,10 @@ from pilas.actores import Animado
 
 pilas.iniciar(usar_motor='qt', titulo='Simon pugliese')
 
-class Juego(pilas.escenas.Escena):
+class Juego(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
         pilas.fondos.Pasto()
 
         b = piano.PianoNuevo(-240, -75)
@@ -22,10 +22,10 @@ class Juego(pilas.escenas.Escena):
         interprete = Interprete(p, b)
 
 
-class Menu(pilas.escenas.Escena):
+class Menu(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
         pilas.fondos.Noche()
         m = pilas.actores.Menu([
                 ("Jugar", self.iniciar_juego),
@@ -49,10 +49,10 @@ class Menu(pilas.escenas.Escena):
         pilas.terminar()
 
 
-class Ayuda(pilas.escenas.Escena):
+class Ayuda(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
         pilas.fondos.Color(pilas.colores.grisoscuro)
         texto = pilas.actores.Texto("Escena no disponible...")
         pilas.eventos.pulsa_tecla_escape.conectar(self.pulsa_tecla)
@@ -61,10 +61,10 @@ class Ayuda(pilas.escenas.Escena):
     def pulsa_tecla(self, evento):
         Menu()
 
-class AcercaDe(pilas.escenas.Escena):
+class AcercaDe(pilas.escena.Base):
 
     def __init__(self):
-        pilas.escenas.Escena.__init__(self)
+        pilas.escena.Base.__init__(self)
         pilas.fondos.Color(pilas.colores.grisoscuro)
         self.cargar_texto()
         pilas.eventos.pulsa_tecla_escape.conectar(self.pulsa_tecla)
@@ -75,11 +75,11 @@ class AcercaDe(pilas.escenas.Escena):
 
     def cargar_texto(self):
         texto = u"""
-Simon Pugliese es un juego de memoria visual. 
-        
+Simon Pugliese es un juego de memoria visual.
+
 Es un homenaje al Maestro Osvaldo Pugliese
 realizado por integrantes de la
-Cooperativa gcoop. El jugador 
+Cooperativa gcoop. El jugador
 deberá seguir la secuencia de teclas del piano
 para componer las melodias del maestro Pugliese,
 al estilo del famoso juego Simon.
