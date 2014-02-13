@@ -91,8 +91,8 @@ Pilas Engine.
         """
 
         self.texto = pilas.actores.Texto(texto, magnitud=15)
-        self.texto.y = [275],0.5
-        self.texto.aprender(pilas.habilidades.Arrastrable)
+        self.texto.escala = 0
+        self.texto.escala = [1], 0.25
 
 
 def mostrar_menu(evento = None):
