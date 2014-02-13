@@ -5,9 +5,9 @@ tecla_pulsada = pilas.evento.Evento("Nota pulsada")
 class Tecla(pilas.actores.Actor):
 
     def __init__(self, tipo_de_tecla, nota, x, y):
-        imagen = "data/" + tipo_de_tecla + ".png"
+        imagen = "data/img/" + tipo_de_tecla + ".png"
         self.nota = nota
-        self.sonido = pilas.sonidos.cargar(nota + '.wav')
+        self.sonido = pilas.sonidos.cargar('notas/' + nota + '.wav')
         pilas.actores.Actor.__init__(self, imagen, x=x, y=y)
         self.definir_centro(("centro", "arriba"))
         if tipo_de_tecla == 'blanca':

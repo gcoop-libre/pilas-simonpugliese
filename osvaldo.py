@@ -8,7 +8,7 @@ termine_de_evaluar = pilas.evento.Evento("Evaluacion terminada")
 class Osvaldo(pilas.actores.Actor):
 
     def __init__(self, partitura, piano, x=0, y=0):
-        pilas.actores.Actor.__init__(self, "osvaldo.png")
+        pilas.actores.Actor.__init__(self, "img/osvaldo.png")
         self.x = 100
         self.y = 100
         self.decir("A ver si me podes seguir...")
