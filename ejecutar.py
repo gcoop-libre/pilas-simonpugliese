@@ -11,8 +11,9 @@ class Juego(pilas.escena.Base):
 
     def __init__(self):
         pilas.escena.Base.__init__(self)
-        pilas.fondos.Pasto()
 
+    def iniciar(self):
+        pilas.fondos.Pasto()
         self.piano = piano.PianoNuevo(-240, -75)
         self.partitura = partitura.Partitura('partituras/la_yumba.csv')
         self.maestro = osvaldo.Osvaldo(self.partitura, self.piano)
@@ -20,7 +21,6 @@ class Juego(pilas.escena.Base):
         self.partitura.cortar_partitura(self.notas_a_ejecutar)
         self.maestro.interpretar()
         osvaldo.termine_de_evaluar.conectar(self.avanzar)
-
 
     def avanzar(self, datos_evento):
         if datos_evento['estuvo_bien']:
@@ -42,52 +42,38 @@ class Menu(pilas.escena.Base):
 
     def __init__(self):
         pilas.escena.Base.__init__(self)
+
+    def iniciar(self):
         pilas.fondos.Noche()
         m = pilas.actores.Menu([
-                ("Jugar", self.iniciar_juego),
-                ("Acerca de...", self.acerca_de),
-                ("Ayuda", Ayuda),
-                ("Salir", self.salir),
+                ("Jugar", iniciar_juego),
+                ("Acerca de...", acerca_de),
+                ("Ayuda", ayuda),
+                ("Salir", salir),
             ])
         m.escala = 0
         m.escala = [1], 0.25
-
-    def iniciar_juego(self):
-        self.juego = Juego()
-
-    def acerca_de(self):
-        AcercaDe()
-
-    def ayuda(self):
-        Ayuda()
-
-    def salir(self):
-        pilas.terminar()
 
 
 class Ayuda(pilas.escena.Base):
 
     def __init__(self):
         pilas.escena.Base.__init__(self)
+
+    def iniciar(self):
         pilas.fondos.Color(pilas.colores.grisoscuro)
         texto = pilas.actores.Texto("Escena no disponible...")
-        pilas.eventos.pulsa_tecla_escape.conectar(self.pulsa_tecla)
         pilas.avisar("Pulsa ESC para regresar al menu.")
-
-    def pulsa_tecla(self, evento):
-        Menu()
 
 class AcercaDe(pilas.escena.Base):
 
     def __init__(self):
         pilas.escena.Base.__init__(self)
+
+    def iniciar(self):
         pilas.fondos.Color(pilas.colores.grisoscuro)
         self.cargar_texto()
-        pilas.eventos.pulsa_tecla_escape.conectar(self.pulsa_tecla)
         pilas.avisar("Pulsa ESC para regresar al menu.")
-
-    def pulsa_tecla(self, evento):
-        Menu()
 
     def cargar_texto(self):
         texto = u"""
@@ -109,5 +95,24 @@ Pilas Engine.
         self.texto.aprender(pilas.habilidades.Arrastrable)
 
 
-Menu()
+def mostrar_menu(evento = None):
+    pilas.cambiar_escena(Menu())
+
+def iniciar_juego():
+    pilas.cambiar_escena(Juego())
+    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+def acerca_de():
+    pilas.cambiar_escena(AcercaDe())
+    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+def ayuda():
+    pilas.cambiar_escena(Ayuda())
+    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+def salir():
+    pilas.terminar()
+
+
+mostrar_menu()
 pilas.ejecutar()

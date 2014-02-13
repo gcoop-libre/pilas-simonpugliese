@@ -5,7 +5,7 @@ import pilas
 class PianoNuevo:
 
     def __init__(self, dx, dy):
-        pilas.eventos.click_de_mouse.conectar(self.cuando_hace_click)
+        pilas.eventos.termina_click.conectar(self.cuando_hace_click)
         self.teclas = {}
         pilas.eventos.pulsa_tecla.conectar(self.presiona_nota_teclado)
         self._crear_teclas(dx, dy)
