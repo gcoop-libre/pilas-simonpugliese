@@ -55,19 +55,10 @@ class Menu(pilas.escena.Base):
         m.escala = [1], 0.25
 
 
-class Ayuda(pilas.escena.Base):
+class Mensaje(pilas.escena.Base):
 
-    def __init__(self):
-        pilas.escena.Base.__init__(self)
-
-    def iniciar(self):
-        pilas.fondos.Color(pilas.colores.grisoscuro)
-        texto = pilas.actores.Texto("Escena no disponible...")
-        pilas.avisar("Pulsa ESC para regresar al menu.")
-
-class AcercaDe(pilas.escena.Base):
-
-    def __init__(self):
+    def __init__(self, archivo):
+        self.archivo = archivo
         pilas.escena.Base.__init__(self)
 
     def iniciar(self):
@@ -76,20 +67,7 @@ class AcercaDe(pilas.escena.Base):
         pilas.avisar("Pulsa ESC para regresar al menu.")
 
     def cargar_texto(self):
-        texto = u"""
-Simon Pugliese es un juego de memoria visual.
-
-Es un homenaje al Maestro Osvaldo Pugliese
-realizado por integrantes de la
-Cooperativa gcoop. El jugador
-deberá seguir la secuencia de teclas del piano
-para componer las melodias del maestro Pugliese,
-al estilo del famoso juego Simon.
-
-Simon Pugliese está desarrollado con la herramienta
-Pilas Engine.
-        """
-
+        texto = open(self.archivo, 'r').read().decode('utf8')
         self.texto = pilas.actores.Texto(texto, magnitud=15)
         self.texto.escala = 0
         self.texto.escala = [1], 0.25
@@ -103,11 +81,11 @@ def iniciar_juego():
     pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
 
 def acerca_de():
-    pilas.cambiar_escena(AcercaDe())
+    pilas.cambiar_escena(Mensaje('data/txt/acerca_de.txt'))
     pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
 
 def ayuda():
-    pilas.cambiar_escena(Ayuda())
+    pilas.cambiar_escena(Mensaje('data/txt/ayuda.txt'))
     pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
 
 def salir():
