@@ -1,1 +1,12 @@
-Proximamente...
+Cada nivel es un tema musical del Maestro Pugliese.
+El objetivo del juego es que puedas tocar la melodía de la canción para pasar
+de nivel.
+El juego toca una tecla y tienes que imitarlo, cuando lo haces de forma correcta 
+sigue con la nota siguiente de la melodía. 
+
+El cursor se mueve con el mouse y debe presionar el botón izquierdo para 
+presionar la tecla que quieras.
+
+Si te equivocas, siempre podras volver a intentar. 
+
+A jugar, a aprender, a disfrutar de la música.
