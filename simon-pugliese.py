@@ -39,6 +39,23 @@ class Juego(pilas.escena.Base):
         time.sleep(2)
         self.maestro.interpretar()
 
+class Cancion:
+
+    def __init__(self, ruta):
+        self.sonido = pilas.musica.cargar(ruta)
+        self.reproduciendo = False
+
+    def reproducir(self, repetir = False):
+        self.reproduciendo = True
+        self.sonido.reproducir()
+
+    def detener(self):
+        self.reproduciendo = False
+        self.sonido.detener()
+
+    def esta_reproduciendo(self):
+        return self.reproduciendo
+
 
 class Mensaje(pilas.escena.Base):
 
@@ -105,6 +122,7 @@ class Menu(pilas.escena.Base):
         return opciones.get(opcion)
 
     def iniciar_juego(self):
+        intro.detener()
         pilas.cambiar_escena(Juego())
         pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
 
@@ -119,11 +137,11 @@ class Menu(pilas.escena.Base):
     def salir(self):
         pilas.terminar()
 
-
-
 def mostrar_menu(evento = None):
+    if not intro.esta_reproduciendo():
+        intro.reproducir()
     pilas.cambiar_escena(Menu())
 
-
+intro = Cancion('data/la-yumba-intro.ogg')
 mostrar_menu()
 pilas.ejecutar()
