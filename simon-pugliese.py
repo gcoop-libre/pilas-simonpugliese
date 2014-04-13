@@ -79,16 +79,19 @@ class Menu(pilas.escena.Base):
         pilas.escena.Base.__init__(self)
 
     def iniciar(self):
-        pilas.fondos.Noche()
+        pilas.fondos.Fondo('data/img/fondo.png')
 
-        opciones = ['juego', 'acerca', 'ayuda', 'salir']
-        y = 50
+        opciones = ['acerca', 'ayuda', 'salir']
+        boton = BotonMenu(x=68, y=-80, ruta_normal='juego_normal.png', ruta_press='juego_press.png', ruta_over='juego_over.png')
+        funcion = self.get_funcion('juego')
+        boton.conectar_presionado(funcion)
+        y = -140
         for opcion in opciones:
-            y -= 60
+            y -=25
             img_normal = opcion + '_normal.png'
             img_press = opcion + '_press.png'
             img_over = opcion + '_over.png'
-            boton = BotonMenu(x=0, y=y, ruta_normal=img_normal, ruta_press=img_press, ruta_over=img_over)
+            boton = BotonMenu(x=-260, y=y, ruta_normal=img_normal, ruta_press=img_press, ruta_over=img_over)
             funcion = self.get_funcion(opcion)
             boton.conectar_presionado(funcion)
 
