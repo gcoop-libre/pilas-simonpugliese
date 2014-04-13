@@ -23,11 +23,13 @@ Usa el comando::
 
 	sudo easy_install pilas -u
 
+Desarrollado para la versión 0.83
+
 Ejecutar
 --------
 Tienes que estar en el directorio del juego
 y ejecutar el comando::
 
-    python ejecutar.py
+    python simon-pugliese.py
     
     
