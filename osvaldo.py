@@ -9,10 +9,9 @@ class Osvaldo(pilas.actores.Actor):
 
     def __init__(self, partitura, piano, x=0, y=0):
         pilas.actores.Actor.__init__(self, "img/osvaldo.png")
-        self.x = 100
+        self.x = 120
         self.y = 100
         self.decir("A ver si me podes seguir...", True)
-        self.escala = 0.5
         self.partitura = partitura
         self.piano = piano
 

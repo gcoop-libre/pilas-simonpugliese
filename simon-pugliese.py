@@ -14,10 +14,14 @@ class Juego(pilas.escena.Base):
         pilas.escena.Base.__init__(self)
 
     def iniciar(self):
-        pilas.fondos.Pasto()
+        pilas.fondos.Fondo('img/fondo_juego.png')
         self.piano = piano.PianoNuevo(-240, -75)
         self.partitura = partitura.Partitura('partituras/la_yumba.csv')
         self.maestro = osvaldo.Osvaldo(self.partitura, self.piano)
+        boton = BotonMenu(x=190, y=190, ruta_normal='salir_interno_normal.png', ruta_press='salir_interno_press.png', ruta_over='salir_interno_over.png')
+        boton.conectar_presionado(pilas.terminar)
+
+
         self.notas_a_ejecutar = 1
         self.partitura.cortar_partitura(self.notas_a_ejecutar)
         self.maestro.interpretar()
