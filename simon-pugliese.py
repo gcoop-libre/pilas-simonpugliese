@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 import time
 import pilas
@@ -38,22 +39,6 @@ class Juego(pilas.escena.Base):
         time.sleep(2)
         self.maestro.interpretar()
 
-class Menu(pilas.escena.Base):
-
-    def __init__(self):
-        pilas.escena.Base.__init__(self)
-
-    def iniciar(self):
-        pilas.fondos.Noche()
-        m = pilas.actores.Menu([
-                ("Jugar", iniciar_juego),
-                ("Acerca de...", acerca_de),
-                ("Ayuda", ayuda),
-                ("Salir", salir),
-            ])
-        m.escala = 0
-        m.escala = [1], 0.25
-
 
 class Mensaje(pilas.escena.Base):
 
@@ -73,23 +58,68 @@ class Mensaje(pilas.escena.Base):
         self.texto.escala = [1], 0.25
 
 
+
+class BotonMenu(pilas.actores.Boton):
+    """Boton que cambia automáticamente de estado al presionarlo o pasar sobre él."""
+
+    def __init__(self, x=0, y=0,
+                ruta_normal='boton/boton_normal.png',
+                ruta_press='boton/boton_press.png',
+                ruta_over='boton/boton_over.png',
+                ):
+        pilas.actores.Boton.__init__(self, x=x, y=y, ruta_normal=ruta_normal, ruta_press=ruta_press, ruta_over=ruta_over)
+        self.conectar_presionado(self.pintar_presionado)
+        self.conectar_normal(self.pintar_normal)
+        self.conectar_sobre(self.pintar_sobre)
+
+
+class Menu(pilas.escena.Base):
+
+    def __init__(self):
+        pilas.escena.Base.__init__(self)
+
+    def iniciar(self):
+        pilas.fondos.Noche()
+
+        opciones = ['juego', 'acerca', 'ayuda', 'salir']
+        y = 50
+        for opcion in opciones:
+            y -= 60
+            img_normal = opcion + '_normal.png'
+            img_press = opcion + '_press.png'
+            img_over = opcion + '_over.png'
+            boton = BotonMenu(x=0, y=y, ruta_normal=img_normal, ruta_press=img_press, ruta_over=img_over)
+            funcion = self.get_funcion(opcion)
+            boton.conectar_presionado(funcion)
+
+    def get_funcion(self, opcion):
+        opciones = {
+            'juego': self.iniciar_juego,
+            'acerca': self.acerca_de,
+            'ayuda': self.ayuda,
+            'salir': self.salir
+        }
+        return opciones.get(opcion)
+
+    def iniciar_juego(self):
+        pilas.cambiar_escena(Juego())
+        pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+    def acerca_de(self):
+        pilas.cambiar_escena(Mensaje('data/txt/acerca_de.txt'))
+        pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+    def ayuda(self):
+        pilas.cambiar_escena(Mensaje('data/txt/ayuda.txt'))
+        pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
+
+    def salir(self):
+        pilas.terminar()
+
+
+
 def mostrar_menu(evento = None):
     pilas.cambiar_escena(Menu())
-
-def iniciar_juego():
-    pilas.cambiar_escena(Juego())
-    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
-
-def acerca_de():
-    pilas.cambiar_escena(Mensaje('data/txt/acerca_de.txt'))
-    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
-
-def ayuda():
-    pilas.cambiar_escena(Mensaje('data/txt/ayuda.txt'))
-    pilas.eventos.pulsa_tecla_escape.conectar(mostrar_menu)
-
-def salir():
-    pilas.terminar()
 
 
 mostrar_menu()
