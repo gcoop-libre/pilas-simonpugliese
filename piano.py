@@ -9,6 +9,26 @@ class PianoNuevo:
         self.teclas = {}
         pilas.eventos.pulsa_tecla.conectar(self.presiona_nota_teclado)
         self._crear_teclas(dx, dy)
+        self. mapa_teclas = {
+            'z':'C1',
+            's':'C#1',
+            'x':'D1',
+            'd':'D#1',
+            'c':'E1',
+            'v':'F1',
+            'g':'F#1',
+            'b':'G1',
+            'h':'G#1',
+            'n':'A1',
+            'j':'A#1',
+            'm':'B1',
+            ',':'C2',
+            'l':'C#2',
+            '.':'D2',
+            'ñ':'D#2',
+            '-':'E2',
+        }
+
 
     def _crear_teclas(self, dx, dy):
         ancho = 37
@@ -38,27 +58,7 @@ class PianoNuevo:
         self.teclas[nota].pulsar()
 
     def presiona_nota_teclado(self, evento):
-        mapa_teclas = {
-            'z':'C1',
-            's':'C#1',
-            'x':'D1',
-            'd':'D#1',
-            'c':'E1',
-            'v':'F1',
-            'g':'F#1',
-            'b':'G1',
-            'h':'G#1',
-            'n':'A1',
-            'j':'A#1',
-            'm':'B1',
-            ',':'C2',
-            'l':'C#2',
-            '.':'D2',
-            'ñ':'D#2',
-            '-':'E2',
-            }
-
-        numero_tecla = mapa_teclas.get(evento.texto, None)
+        numero_tecla = self.mapa_teclas.get(evento.texto, None)
 
         if numero_tecla != None:
             self.teclas[numero_tecla].pulsar()

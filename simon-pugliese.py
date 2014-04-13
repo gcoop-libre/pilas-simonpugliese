@@ -24,16 +24,16 @@ class Juego(pilas.escena.Base):
 
     def avanzar(self, datos_evento):
         if datos_evento['estuvo_bien']:
-            self.maestro.decir('Bien! Sigamos...')
+            self.maestro.decir('Bien! Sigamos...', True)
             self.notas_a_ejecutar += 1
             try:
                 self.partitura.cortar_partitura(self.notas_a_ejecutar)
             except:
                 # TODO: reproducir la canción original?
-                self.maestro.decir('Felicitaciones!')
+                self.maestro.decir('Felicitaciones!', True)
                 return
         else:
-            self.maestro.decir('Ups! Probemos de nuevo.')
+            self.maestro.decir('Ups! Probemos de nuevo.', True)
             self.partitura.reiniciar()
         time.sleep(2)
         self.maestro.interpretar()
