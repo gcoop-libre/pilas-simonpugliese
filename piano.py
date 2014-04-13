@@ -3,9 +3,9 @@ import tecla
 import pilas
 
 class PianoNuevo:
-    
+
     def __init__(self, dx, dy):
-        pilas.eventos.click_de_mouse.connect(self.cuando_hace_click)
+        pilas.eventos.termina_click.conectar(self.cuando_hace_click)
         self.teclas = {}
         pilas.eventos.pulsa_tecla.conectar(self.presiona_nota_teclado)
         self._crear_teclas(dx, dy)
@@ -38,7 +38,7 @@ class PianoNuevo:
         self.teclas[nota].pulsar()
 
     def presiona_nota_teclado(self, evento):
-        mapa_teclas = { 
+        mapa_teclas = {
             'z':'C1',
             's':'C#1',
             'x':'D1',
