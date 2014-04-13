@@ -11,7 +11,7 @@ class Osvaldo(pilas.actores.Actor):
         pilas.actores.Actor.__init__(self, "img/osvaldo.png")
         self.x = 100
         self.y = 100
-        self.decir("A ver si me podes seguir...")
+        self.decir("A ver si me podes seguir...", True)
         self.escala = 0.5
         self.partitura = partitura
         self.piano = piano
@@ -22,7 +22,7 @@ class Osvaldo(pilas.actores.Actor):
 
     def evaluar(self, datos_evento):
         time.sleep(2)
-        self.decir("Ahora te toca ti...")
+        self.decir("Ahora te toca ti...", True)
         self.partitura.reiniciar()
         self.siguiente_nota = self.partitura.siguiente()[1]
         self.ultima_nota = False
