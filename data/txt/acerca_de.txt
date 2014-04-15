@@ -9,3 +9,7 @@ al estilo del famoso juego Simon.
 
 Simon Pugliese está desarrollado con la herramienta
 Pilas Engine.
+
+* Logo: Soledad Tordini
+* Música y sonidos por Juan de Borbón (modo AD)
+* Dibujos Pugliese: Cluadio "maléfico Andaur"
