@@ -6,7 +6,7 @@ import piano
 import partitura
 import osvaldo
 
-pilas.iniciar(usar_motor='qt', titulo='Simon pugliese')
+pilas.iniciar(usar_motor='qt', titulo='Simon pugliese', audio='pygame')
 
 class Juego(pilas.escena.Base):
 
@@ -29,18 +29,17 @@ class Juego(pilas.escena.Base):
 
     def avanzar(self, datos_evento):
         if datos_evento['estuvo_bien']:
-            self.maestro.decir('Bien! Sigamos...', True)
+            self.maestro.decir('Bien! Sigamos...', True, False)
             self.notas_a_ejecutar += 1
             try:
                 self.partitura.cortar_partitura(self.notas_a_ejecutar)
             except:
                 # TODO: reproducir la canción original?
-                self.maestro.decir('Felicitaciones!', True)
+                self.maestro.decir('Felicitaciones!', True, False)
                 return
         else:
-            self.maestro.decir('Ups! Probemos de nuevo.', True)
+            self.maestro.decir('Ups! Probemos de nuevo.', True, False)
             self.partitura.reiniciar()
-        time.sleep(2)
         self.maestro.interpretar()
 
 class Cancion:
